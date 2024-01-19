@@ -14,7 +14,7 @@ app.use("/", (req, res) => {
 const main = async () => {
     try {
         await sequelize.sync(
-            // { force: true }
+            { force: true }
         );
         console.log("db connection is successfull")
         app.listen(process.env.PORT, () => console.log(`api is running on port: ${process.env.PORT}`))
