@@ -1,0 +1,24 @@
+.conversations {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+
+    .conversationImage {
+        width: 4rem;
+        height: 4rem;
+        border-radius: 50%;
+        margin-right: 2rem;
+    }
+
+    .conversationName {
+        font-weight: 500;
+        font-size: 1.6rem;
+        text-transform: capitalize;
+    }
+
+    &:hover {
+        background-color: #d8d8d8;
+        border-radius: 2rem;
+
+    }
+}
