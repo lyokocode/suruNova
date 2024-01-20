@@ -4,6 +4,7 @@ import { sequelize } from "./database/db.js"
 import userRoute from "./routes/user.js"
 import authRoute from "./routes/auth.js"
 import cookieParser from "cookie-parser";
+import cors from "cors"
 
 
 const app = express()
@@ -12,6 +13,7 @@ const app = express()
 dotenv.config()
 app.use(express.json());
 app.use(cookieParser());
+app.use(cors())
 
 
 // Routes
@@ -22,6 +24,13 @@ app.use("/api/auth", authRoute)
 // app connection
 app.use("/", (req, res) => {
     res.send("server is running")
+})
+
+app.use((req, res, next) => {
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT");
+    res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+    next();
 })
 
 // error handling

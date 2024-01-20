@@ -1,9 +1,7 @@
-
-import { useSelector } from 'react-redux'
 import { Outlet, Navigate } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
-const PrivateRoutes = () => {
-
+export const PrivateRoutes = () => {
     const { auth } = useSelector(state => state.auth)
     console.log(auth)
     return (

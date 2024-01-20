@@ -1,16 +1,26 @@
 import "./navbar.scss"
-import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { setAuth } from '@/store/authSlice'
-
+import { useDispatch, useSelector } from 'react-redux'
+import { logout } from '@/store/authSlice';
+import axios from "axios"
 export const Navbar = () => {
-    const dispatch = useDispatch()
+
+
     const { auth } = useSelector(state => state.auth)
+    const dispatch = useDispatch();
+
+    const handleLogout = async () => {
+        if (auth) {
+            try {
+                await axios.post(`${import.meta.env.VITE_REACT_BASE_URL}/api/auth/logout/${auth.id}`);
+                dispatch(logout());
+            } catch (error) {
+                console.error('Logout error:', error);
+            }
+        }
+    };
     return (
         <nav className="navbar">
-            <div className="logo">
-                <img src="/logo.png" alt="logo" />
-            </div>
 
             <ul className="navigator">
                 <li>
@@ -20,8 +30,10 @@ export const Navbar = () => {
                     <Link to="/messenger">Mesenger</Link>
                 </li>
                 <li>
-                    <button onClick={() => dispatch(setAuth(false))}>
-                        {auth && "Logout"}
+                    <button
+                        onClick={handleLogout}
+                    >
+                        {"Logout"}
                     </button>
                 </li>
             </ul>
