@@ -1,5 +1,5 @@
 import express from "express";
-import { login, register } from "../controllers/Auth.js"
+import { login, register, logout } from "../controllers/Auth.js"
 import { verifyToken } from "../utils/verifyToken";
 
 const router = express.Router()
@@ -9,6 +9,9 @@ router.post("/register", register);
 
 // LOGIN
 router.post("/login", login);
+
+// LOGOUT
+router.post("/logout", logout)
 
 // CHECK AUTHANTICATED
 router.get("/check", verifyToken, (req, res, next) => {
